@@ -11,7 +11,7 @@ class Service(object):
 
     def new_model(self, payload) -> object:
         this = self.dataset
-        this.context = '../data/'
+        this.context = './data/'
         this.fname = payload
         return pd.read_csv(this.context + this.fname)
 
@@ -25,6 +25,7 @@ class Service(object):
 
     @staticmethod
     def drop_feature(this, *feature) -> object:
+        print(this.train.columns)
         for i in feature:
             this.train = this.train.drop([i], axis = 1)
             this.test = this.test.drop([i], axis=1)
@@ -33,8 +34,8 @@ class Service(object):
 
     @staticmethod
     def embarked_nominal(this) -> object:
-        this.train = this.train.fillna({'Embarked', 'S'}) # S는 사우스햄튼
-        this.test = this.test.fillna({'Embarked', 'S'})  # S는 사우스햄튼
+        this.train = this.train.fillna({'Embarked': 'S'}) # S는 사우스햄튼
+        this.test = this.test.fillna({'Embarked': 'S'})  # S는 사우스햄튼
         this.train['Embarked'] = this.train['Embarked'].map({'S': 1, 'C': 2, 'Q':3})
         this.test['Embarked'] = this.test['Embarked'].map({'S': 1, 'C': 2, 'Q': 3})
         return this
