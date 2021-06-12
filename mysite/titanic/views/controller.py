@@ -19,7 +19,7 @@ class Controller(object):
 
     def learning(self, train, test):
         this = self.modeling(train, test)
-        print(f'사이킷런의 SVC 알고리즘 정확도 {self.service.get_accurcy(this)} %')
+        print(f'사이킷런 알고리즘 정확도 {self.service.get_accurcy(this)} %')
 
     def submit(self, train, test):
         this = self.modeling(train, test)

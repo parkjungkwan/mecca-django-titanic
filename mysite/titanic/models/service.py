@@ -25,7 +25,7 @@ class Service(object):
 
     @staticmethod
     def drop_feature(this, *feature) -> object:
-        print(this.train.columns)
+
         for i in feature:
             this.train = this.train.drop([i], axis = 1)
             this.test = this.test.drop([i], axis=1)
@@ -85,6 +85,7 @@ class Service(object):
 
         this.train['FareBand'] = pd.qcut(this.train['Fare'], 4, labels={1,2,3,4}) # 최고와 최저를 통해 4등분하라
         this.test['FareBand'] = pd.qcut(this.test['Fare'], 4, labels={1,2,3,4})
+        return this
 
     @staticmethod
     def create_k_fold() -> object:
